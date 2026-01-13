@@ -141,7 +141,6 @@ type desugared =
   ; scopeVarStates : yes
   ; scopeVarSimpl : no
   ; explicitScopes : yes
-  ; assertions : no
   ; defaultTerms : yes
   ; custom : no >
 (* Technically, desugared before name resolution has [syntacticNames: yes;
@@ -161,7 +160,6 @@ type scopelang =
   ; scopeVarStates : no
   ; scopeVarSimpl : yes
   ; explicitScopes : yes
-  ; assertions : no
   ; defaultTerms : yes
   ; custom : no >
 
@@ -174,7 +172,6 @@ type dcalc =
   ; scopeVarStates : no
   ; scopeVarSimpl : no
   ; explicitScopes : no
-  ; assertions : yes
   ; defaultTerms : yes
   ; custom : no >
 
@@ -187,7 +184,6 @@ type lcalc =
   ; scopeVarStates : no
   ; scopeVarSimpl : no
   ; explicitScopes : no
-  ; assertions : yes
   ; defaultTerms : no
   ; custom : no >
 
@@ -203,8 +199,7 @@ type dcalc_lcalc_features =
   ; syntacticNames : no
   ; scopeVarStates : no
   ; scopeVarSimpl : no
-  ; explicitScopes : no
-  ; assertions : yes >
+  ; explicitScopes : no >
 (** Features that are common to Dcalc and Lcalc *)
 
 type 'd dcalc_lcalc = < dcalc_lcalc_features ; defaultTerms : 'd ; custom : no >
@@ -596,6 +591,7 @@ and ('a, 'b, 'm) base_gexpr =
       size : int;
     }
       -> ('a, < .. >, 'm) base_gexpr
+  | EAssert : ('a, 'm) gexpr -> ('a, < .. >, 'm) base_gexpr
   (* Early stages *)
   | ELocation : 'b glocation -> ('a, (< .. > as 'b), 'm) base_gexpr
   | EScopeCall : {
@@ -629,7 +625,6 @@ and ('a, 'b, 'm) base_gexpr =
       name : external_ref Mark.pos;
     }
       -> ('a, < explicitScopes : no ; .. >, 't) base_gexpr
-  | EAssert : ('a, 'm) gexpr -> ('a, < assertions : yes ; .. >, 'm) base_gexpr
   | EFatalError : Catala_runtime.error -> ('a, < .. >, 'm) base_gexpr
   | EPos : Pos.t -> ('a, < .. >, 'm) base_gexpr
       (** Position literal, used along returned exceptions. Note that it's only
