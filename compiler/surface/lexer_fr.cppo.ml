@@ -62,6 +62,8 @@
 #define MS_IF "si"
 #define MS_THEN "alors"
 #define MS_ELSE "sinon"
+#define MS_ENSURE "vérifie"
+#define MR_ENSURE "v", 0xE9, "rifie"
 #define MS_CONDITION "condition"
 #define MS_CONTENT "contenu"
 #define MS_STRUCT "structure"

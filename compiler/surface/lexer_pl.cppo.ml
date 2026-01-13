@@ -52,6 +52,7 @@
 #define MR_IF "je", 0x017C, "eli"
 #define MS_THEN "wtedy"
 #define MS_ELSE "inaczej"
+#define MS_ENSURE "upewnij"
 #define MS_CONDITION "warunek"
 #define MS_CONTENT "typu"
 #define MS_STRUCT "struktura"

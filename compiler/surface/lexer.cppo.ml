@@ -134,6 +134,9 @@ module R = Re.Pcre
 #ifndef MR_ELSE
   #define MR_ELSE MS_ELSE
 #endif
+#ifndef MR_ENSURE
+  #define MR_ENSURE MS_ENSURE
+#endif
 #ifndef MR_CONDITION
   #define MR_CONDITION MS_CONDITION
 #endif
@@ -292,6 +295,7 @@ let token_list : (string * token) list =
     (MS_IF, IF);
     (MS_THEN, THEN);
     (MS_ELSE, ELSE);
+    (MS_ENSURE, ENSURE);
     (MS_CONDITION, CONDITION);
     (MS_CONTENT, CONTENT);
     (MS_STRUCT, STRUCT);
@@ -557,6 +561,9 @@ let rec lex_code (lexbuf : lexbuf) : token =
   | MR_ELSE ->
       L.update_acc lexbuf;
       ELSE
+  | MR_ENSURE ->
+      L.update_acc lexbuf;
+      ENSURE
   | MR_CONDITION ->
       L.update_acc lexbuf;
       CONDITION

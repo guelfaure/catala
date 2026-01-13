@@ -50,6 +50,7 @@
 #define MS_IF "if"
 #define MS_THEN "then"
 #define MS_ELSE "else"
+#define MS_ENSURE "ensure"
 #define MS_CONDITION "condition"
 #define MS_CONTENT "content"
 #define MS_STRUCT "structure"
