@@ -335,7 +335,8 @@ class Date:
                 round: dates.DateRounding = dates.DateRounding.AbortOnRound, \
                 pos: SourcePosition | None = None) -> Union[Duration, Date]:
         if isinstance(other, Date):
-            return Duration(self.value - other.value)
+            try: return Date(self.value.__add__(other.value, round))
+            except dates.AmbiguousComputation: raise AmbiguousDateRounding(pos)
         elif isinstance(other, Duration):
             return Date(self.value + (-other.value))
         else:
